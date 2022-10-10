@@ -1,0 +1,5 @@
+/vendor/
+/nbproject/
+/docs/coverage/
+.phpunit.result.cache
+composer.lock
