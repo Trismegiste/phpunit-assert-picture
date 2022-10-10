@@ -26,7 +26,7 @@ trait TextContent
         }
         $extract = $ocr->run();
 
-        $this->assertStringContainsString($extract, $text);
+        $this->assertStringContainsString($text, $extract);
     }
 
 }
