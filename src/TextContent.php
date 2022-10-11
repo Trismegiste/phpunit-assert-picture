@@ -14,7 +14,7 @@ use thiagoalessio\TesseractOCR\TesseractOCR;
 trait TextContent
 {
 
-    public function assertPictureContainsString($text, $picture): void
+    public function assertPictureContainsString(string $needle, $picture, string $message = ''): void
     {
         $ocr = new TesseractOCR();
         if (is_string($picture)) {
@@ -22,11 +22,12 @@ trait TextContent
         } else {
             ob_start();
             imagepng($picture);
-            $ocr->imageData(ob_get_clean());
+            $content = ob_get_clean();
+            $ocr->imageData($content, strlen($content));
         }
         $extract = $ocr->run();
 
-        $this->assertStringContainsString($text, $extract);
+        $this->assertStringContainsString($needle, $extract, $message);
     }
 
 }

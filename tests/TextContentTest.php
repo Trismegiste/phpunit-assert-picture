@@ -12,9 +12,24 @@ class TextContentTest extends TestCase
 
     use TextContent;
 
-    public function testFixtures()
+    public function getFixture(): array
     {
-        $this->assertPictureContainsString('distinguishable', __DIR__ . '/fixtures/capture.png');
+        return [
+            [__DIR__ . '/fixtures/capture.png']
+        ];
+    }
+
+    /** @dataProvider getFixture */
+    public function testOcrFromPathname(string $pic)
+    {
+        $this->assertPictureContainsString('distinguishable', $pic);
+    }
+
+    /** @dataProvider getFixture */
+    public function testOcrFromPResource(string $pic)
+    {
+        $gd = imagecreatefrompng($pic);
+        $this->assertPictureContainsString('distinguishable', $gd);
     }
 
 }
