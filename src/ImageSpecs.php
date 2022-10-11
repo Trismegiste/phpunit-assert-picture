@@ -50,4 +50,14 @@ trait ImageSpecs
         $this->assertTrue(($gd !== false) && (imagesx($gd) > 0) && (imagesy($gd) > 0), $message);
     }
 
+    public function assertPortait($pic, string $message = ''): void
+    {
+        if (is_string($pic)) {
+            list($width, $height) = getimagesize($pic);
+            $this->assertGreaterThan($width, $height, $message);
+        } else {
+            $this->assertGreaterThan(imagesx($pic), imagesy($pic), $message);
+        }
+    }
+
 }

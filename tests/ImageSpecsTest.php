@@ -41,7 +41,13 @@ class ImageSpecsTest extends TestCase
     /** @dataProvider getFixture */
     public function testIntegrity(string $pic)
     {
-        $this->assertMimeType('image/png', $pic);
+        $this->assertIntegrity($pic);
+    }
+
+    /** @dataProvider getFixture */
+    public function testPortrait(string $pic)
+    {
+        $this->assertPortait($pic);
     }
 
 }
