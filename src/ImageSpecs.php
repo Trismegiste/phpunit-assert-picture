@@ -44,19 +44,29 @@ trait ImageSpecs
         $this->assertEquals($target, image_type_to_mime_type($type), $message);
     }
 
-    public function assertIntegrity(string $pic, string $message = ''): void
+    public function assertIntegrity(string $pic, string $message = 'Picture id corrupted'): void
     {
         $gd = imagecreatefromstring(file_get_contents($pic));
         $this->assertTrue(($gd !== false) && (imagesx($gd) > 0) && (imagesy($gd) > 0), $message);
     }
 
-    public function assertPortait($pic, string $message = ''): void
+    public function assertPortait($pic, string $message = 'Picture is not in portrait mode'): void
     {
         if (is_string($pic)) {
             list($width, $height) = getimagesize($pic);
             $this->assertGreaterThan($width, $height, $message);
         } else {
             $this->assertGreaterThan(imagesx($pic), imagesy($pic), $message);
+        }
+    }
+
+    public function assertLandscape($pic, string $message = 'Picture is not in landscape mode'): void
+    {
+        if (is_string($pic)) {
+            list($width, $height) = getimagesize($pic);
+            $this->assertLessThan($width, $height, $message);
+        } else {
+            $this->assertLessThan(imagesx($pic), imagesy($pic), $message);
         }
     }
 

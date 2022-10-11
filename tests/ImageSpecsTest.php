@@ -45,9 +45,9 @@ class ImageSpecsTest extends TestCase
     }
 
     /** @dataProvider getFixture */
-    public function testPortrait(string $pic)
+    public function testLandscape(string $pic)
     {
-        $this->assertPortait($pic);
+        $this->assertLandscape($pic);
     }
 
 }
