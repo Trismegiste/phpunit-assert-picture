@@ -44,4 +44,10 @@ trait ImageSpecs
         $this->assertEquals($target, image_type_to_mime_type($type), $message);
     }
 
+    public function assertIntegrity(string $pic, string $message = ''): void
+    {
+        $gd = imagecreatefromstring(file_get_contents($pic));
+        $this->assertTrue(($gd !== false) && (imagesx($gd) > 0) && (imagesy($gd) > 0), $message);
+    }
+
 }
