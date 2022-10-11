@@ -1,6 +1,6 @@
 {
     "name": "trismegiste/phpunit-assert-picture",
-    "description": "Usefull assertions on pictures",
+    "description": "Useful assertions on pictures",
     "type": "library",
     "require-dev": {
         "thiagoalessio/tesseract_ocr": "^2.12",

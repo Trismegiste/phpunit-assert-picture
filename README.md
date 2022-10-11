@@ -21,8 +21,8 @@ class MyPictureTest extends \PHPUnit\Framework\TestCase
 ```
 
 # Examples
-
 Here's a picture :
+
 ![Sample](https://github.com/Trismegiste/phpunit-assert-picture/blob/master/tests/fixtures/sample.png)
 
 We can call assertions with the full pathname of the picture or with a \GdImage instance :
