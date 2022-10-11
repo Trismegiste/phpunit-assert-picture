@@ -1,5 +1,5 @@
 # phpunit-assert-picture
-New PhpUnit Assertions for testing Pictures
+New PhpUnit Assertions for testing Pictures (size, type, text content...)
 
 # What
 It's a set of Traits for adding new assertions on pictures
@@ -25,6 +25,7 @@ Here's a picture :
 
 ![Sample](https://github.com/Trismegiste/phpunit-assert-picture/blob/master/tests/fixtures/sample.png)
 
+## Image attributes
 We can call assertions with the full pathname of the picture or with a \GdImage instance :
 ```php
    /** @dataProvider getFixture */
@@ -39,10 +40,15 @@ We can call assertions with the full pathname of the picture or with a \GdImage 
    }
 ```
 
+## Text contents
 Assertion on text content inside the picture thanks to OCR :
 ```php
        $this->assertPictureContainsString('YOLO', $pic);
 ```
+
+# Dependencies
+* Tesseract
+* GD2
 
 # Contribute
 Feel free to contribute with new fancy features

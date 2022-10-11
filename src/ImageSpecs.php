@@ -6,13 +6,15 @@
 
 namespace Trismegiste\PhpunitAssertPicture;
 
+use GdImage;
+
 /**
  * Picture dimension, format and specification assertions
  */
 trait ImageSpecs
 {
 
-    public function assertPictureHeight(int $target, $pic, string $message = ''): void
+    public function assertPictureHeight(int $target, string|GdImage $pic, string $message = ''): void
     {
         if (is_string($pic)) {
             list(, $height) = getimagesize($pic);
@@ -22,7 +24,7 @@ trait ImageSpecs
         }
     }
 
-    public function assertPictureWidth(int $target, $pic, string $message = ''): void
+    public function assertPictureWidth(int $target, string|GdImage $pic, string $message = ''): void
     {
         if (is_string($pic)) {
             list($width) = getimagesize($pic);
@@ -32,7 +34,7 @@ trait ImageSpecs
         }
     }
 
-    public function assertDimension(int $width, int $height, $pic, string $message = ''): void
+    public function assertDimension(int $width, int $height, string|GdImage $pic, string $message = ''): void
     {
         $this->assertPictureHeight($height, $pic, $message);
         $this->assertPictureWidth($width, $pic, $message);
@@ -50,7 +52,7 @@ trait ImageSpecs
         $this->assertTrue(($gd !== false) && (imagesx($gd) > 0) && (imagesy($gd) > 0), $message);
     }
 
-    public function assertPortait($pic, string $message = 'Picture is not in portrait mode'): void
+    public function assertPortait(string|GdImage $pic, string $message = 'Picture is not in portrait mode'): void
     {
         if (is_string($pic)) {
             list($width, $height) = getimagesize($pic);
@@ -60,7 +62,7 @@ trait ImageSpecs
         }
     }
 
-    public function assertLandscape($pic, string $message = 'Picture is not in landscape mode'): void
+    public function assertLandscape(string|GdImage $pic, string $message = 'Picture is not in landscape mode'): void
     {
         if (is_string($pic)) {
             list($width, $height) = getimagesize($pic);

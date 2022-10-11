@@ -6,6 +6,7 @@
 
 namespace Trismegiste\PhpunitAssertPicture;
 
+use GdImage;
 use thiagoalessio\TesseractOCR\TesseractOCR;
 
 /**
@@ -14,7 +15,7 @@ use thiagoalessio\TesseractOCR\TesseractOCR;
 trait TextContent
 {
 
-    public function assertPictureContainsString(string $needle, $picture, string $message = ''): void
+    public function assertPictureContainsString(string $needle, string|GdImage $picture, string $message = ''): void
     {
         $ocr = new TesseractOCR();
         if (is_string($picture)) {
