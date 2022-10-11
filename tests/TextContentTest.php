@@ -15,21 +15,22 @@ class TextContentTest extends TestCase
     public function getFixture(): array
     {
         return [
-            [__DIR__ . '/fixtures/capture.png']
+            [__DIR__ . '/fixtures/capture.png', 'distinguishable'],
+            [__DIR__ . '/fixtures/sample.png', 'YOLO']
         ];
     }
 
     /** @dataProvider getFixture */
-    public function testOcrFromPathname(string $pic)
+    public function testOcrFromPathname(string $pic, string $needle)
     {
-        $this->assertPictureContainsString('distinguishable', $pic);
+        $this->assertPictureContainsString($needle, $pic);
     }
 
     /** @dataProvider getFixture */
-    public function testOcrFromPResource(string $pic)
+    public function testOcrFromPResource(string $pic, string $needle)
     {
         $gd = imagecreatefrompng($pic);
-        $this->assertPictureContainsString('distinguishable', $gd);
+        $this->assertPictureContainsString($needle, $gd);
     }
 
 }
